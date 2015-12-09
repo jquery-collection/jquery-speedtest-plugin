@@ -1,5 +1,9 @@
 
 (function($) {
+    // A simple speedtest plugin to check download speed in a network.
+    //Author : Harsha Jagadish
+    //Version : V 0.1
+    // TODO: Add waiting message and waiting image
     $.fn._speedTest = function(options) {
 
         function foo(){
@@ -13,7 +17,7 @@
                 }, options),
                 duration, download, startTime, endTime, bitsLoaded,cacheBuster,speedMbps,speedKbps,speedBps,p;
 
-
+                // TODO: add more types to handle for download
                 if (stest.fileType == "text") {
                     download = new Document();
                 } else if (stest.fileType == "image") {
@@ -30,6 +34,7 @@
                 cacheBuster = "?spdt=" + startTime;
                 download.src = stest.fileUrl + cacheBuster;
                  p = function see(){
+                    // TODO: change the calculation to handle the error managment
                    endTime = (new Date()).getTime();
                    duration = (endTime - startTime) / 1000;
                    bitsLoaded = stest.fileSize * 8;
@@ -46,8 +51,10 @@
 
 
         return this.each(function() {
+            //TODO: remove too many variable names
             var g = foo();
-            $(this).text(g);
+            // TODO: make the speed extension as a variable to fit user needs
+            $(this).text(g).append("&nbsp; Mbps");
         }); //end of for each function
 
     }; //end of the main function
