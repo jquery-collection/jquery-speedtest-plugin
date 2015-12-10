@@ -1,0 +1,26 @@
+{
+  "name": "speedtestplugin",
+  "version": "1.0.0",
+  "description": "A simple plugin to test the network speed between user device and a server sepcified by the user by downloading the file specified by the user",
+  "main": "jquery.speedtest.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarshaJagadish/jquery-speedtest-plugin.git"
+  },
+  "keywords": [
+    "Speedtest",
+    "jquery-plugin",
+    "ecosystem:jquery",
+    "user",
+    "defined"
+  ],
+  "author": "Harsha Jagadish",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HarshaJagadish/jquery-speedtest-plugin/issues"
+  },
+  "homepage": "https://github.com/HarshaJagadish/jquery-speedtest-plugin#readme"
+}
