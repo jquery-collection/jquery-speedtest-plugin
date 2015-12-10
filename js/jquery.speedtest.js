@@ -31,12 +31,15 @@
                 } //error if
 
                 startTime = (new Date()).getTime();
+                console.log(startTime);
                 cacheBuster = "?spdt=" + startTime;
                 download.src = stest.fileUrl + cacheBuster;
                  p = function see(){
                     // TODO: change the calculation to handle the error managment
                    endTime = (new Date()).getTime();
+                   console.log(endTime);
                    duration = (endTime - startTime) / 1000;
+                   console.log(duration);
                    bitsLoaded = stest.fileSize * 8;
                    speedBps = (bitsLoaded / duration).toFixed(2);
                    console.log(speedBps);
