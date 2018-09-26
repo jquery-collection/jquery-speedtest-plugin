@@ -1,8 +1,7 @@
-
 (function($) {
     // A simple speedtest plugin to check download speed in a network.
     //Author : Harsha Jagadish
-    //Version : V 0.1
+    //Version : V 0.2
     // TODO: Add waiting message and waiting image
     $.fn._speedTest = function(options) {
 
@@ -31,15 +30,15 @@
                 } //error if
 
                 startTime = (new Date()).getTime();
-                console.log(startTime);
+                console.log("startTime:" + startTime);
                 cacheBuster = "?spdt=" + startTime;
                 download.src = stest.fileUrl + cacheBuster;
-                 p = function see(){
-                    // TODO: change the calculation to handle the error managment
+                p = function see(){
+                    // TODO: change the calculation to handle the error management
                    endTime = (new Date()).getTime();
-                   console.log(endTime);
-                   duration = (endTime - startTime) / 1000;
-                   console.log(duration);
+                   console.log("endTime:" + endTime);
+                   duration = Math.max((endTime - startTime), 1) / 1000;
+                   console.log("duration:"+duration);
                    bitsLoaded = stest.fileSize * 8;
                    speedBps = (bitsLoaded / duration).toFixed(2);
                    console.log(speedBps);
@@ -49,6 +48,17 @@
                    console.log(speedMbps);
                    return speedMbps;
                };
+               $(download).on('load', function callback(){
+                   p();
+                   if(stest.onLoad){
+                       stest.onLoad.call(this, duration, speedMbps)
+                   }
+               }).on('error',function(err, msg) {
+                   p();
+                   if(stest.onError){
+                       stest.onError.call(this, duration, speedMbps, event)
+                   }
+               });
                 return p;
         }// end of foo
 
@@ -57,7 +67,8 @@
             //TODO: remove too many variable names
             var g = foo();
             // TODO: make the speed extension as a variable to fit user needs
-            $(this).text(g).append("&nbsp; Mbps");
+            // $(this).text(g).append("&nbsp; Mbps");
+            // $(this).text(g).append("Mbps");
         }); //end of for each function
 
     }; //end of the main function
